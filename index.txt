@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Priscilla ❤️</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Courier New', cursive;
+            background: linear-gradient(to right, #ff4e50, #fc913a);
+            padding: 50px;
+            color: #3d0e1b;
+            animation: fadeIn 2s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            display: none;
+            width: 60%;
+            margin: auto;
+            color: #3d0e1b;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        }
+        .visible {
+            display: block;
+            transform: scale(1);
+            opacity: 1;
+        }
+        button {
+            background-color: #d72638;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #a51c2d;
+            transform: scale(1.1) rotate(2deg);
+        }
+        .gallery {
+            margin-top: 20px;
+            position: relative;
+            width: 400px;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            margin: auto;
+        }
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            border-radius: 10px;
+        }
+        .gallery img.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="step1" class="card visible">
+        <h1>💖 Click Here 💖</h1>
+        <button onclick="nextStep(1)">Click Here</button>
+    </div>
+    
+    <div id="step2" class="card">
+        <h2>Priscilla, will you be my Valentine? ❤️</h2>
+        <button onclick="nextStep(2)">Yes</button>
+        <button onclick="nextStep(2)">Yes</button>
+    </div>
+
+    <div id="step3" class="card">
+        <h2>You're Invited to a Romantic Dinner! ✨</h2>
+        <p style="font-size: 20px;">📅 <strong>Date:</strong> February 14th, 7:00 PM</p>
+        <p style="font-size: 20px;">🍽️ <strong>Location:</strong> Bacchus Wood Fired</p>
+        <p style="font-size: 22px; font-weight: bold;">Will you be there?</p>
+        <button>Yes</button>
+        <button>Yes</button>
+        
+        <div class="gallery">
+            <img src="image1.jpg" class="active" alt="Image 1">
+            <img src="image2.jpg" alt="Image 2">
+            <img src="image3.jpg" alt="Image 3">
+        </div>
+    </div>
+
+    <script>
+        function nextStep(current) {
+            document.getElementById('step' + current).classList.remove('visible');
+            document.getElementById('step' + (current + 1)).classList.add('visible');
+        }
+        
+        function rotateImages() {
+            let images = document.querySelectorAll('.gallery img');
+            let currentIndex = 0;
+            
+            setInterval(() => {
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('active');
+            }, 3000);
+        }
+        
+        document.getElementById('step3').addEventListener('transitionend', rotateImages);
+    </script>
+</body>
+</html>
